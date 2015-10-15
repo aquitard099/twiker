@@ -1,0 +1,11 @@
+<div class="blanco">
+<%= @user.name %>
+<%= @user.email %>
+<%= @user.password%>
+<%= @user.gender%>
+<%= @user.verified %>
+</div>
+
+<!-- Ambos sirver para generar un link para cerrar seccion, el segundo ayuda dese ruby -->
+<a class="blanco"href="/logout">Cerrar sesion</a> 
+<%= link_to "Cerrar sesion", "/logout", class: "blanco"%>

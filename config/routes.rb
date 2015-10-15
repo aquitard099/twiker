@@ -3,6 +3,17 @@ Rails.application.routes.draw do
 	# Defino el método que atenderá el index de mi aplicación.
   root 'application#index'
 
+  get "calculadora" => "application#calculadora"
+
+  post "calculo" => "application#calculo"
+
+  resources :users
+
+  post "login" => "users#login"
+
+  get 'logout' => "users#logout"
+
+=begin
   # Defino una ruta para el resgistro con metodo post y le asigno un controlador y un método
   # para que atiendan al cliente que llegue a esa ruta.
   post "signup" => "application#signup"
@@ -10,13 +21,7 @@ Rails.application.routes.draw do
   # Defino una ruta para el inicio de sesión con metodo post y le asigno un controlador y un método
   # para que atiendan al cliente que llegue a esa ruta.
   post "login" => "application#login"
-
-  get "calculadora" => "application#calculadora"
-
-  post "calculo" => "application#calculo"
-
-
-
+=end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
