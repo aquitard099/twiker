@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 	   user.email = params[:email]
 	   user.password = params[:password]
 	   if user.save
+	   	UserMailer.welcome(user.name, user.email).deliver
 	   	redirect_to "/"
 	   else
 	   	flash[:notice] = "Hay errores en el formulario."
