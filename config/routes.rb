@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   resources :users
 
+  resources :tweets, except: [:index, :edit, :update]
+
   post "login" => "users#login"
 
   get 'logout' => "users#logout"

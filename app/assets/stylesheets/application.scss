@@ -11,18 +11,22 @@
  * file per style scope.
  *
  *= require normalize
+ *= require font-awesome.min
  */
 
 html {
   font-size:16px;
   height:100%;
   body {
-  	background:url("AR_ES_MEX_LATAM_3.jpg") center top no-repeat;
-  	background-size:cover;
-	  font:normal 62.5% 'Helvetica Neue', Tahoma, Arial, sans-serif;
-	  height:100%;
-	  margin:0;
+  	font:normal 62.5% 'Helvetica Neue', Tahoma, Arial, sans-serif;
+	height:100%;
+	margin  :0;
 	}
+}
+
+body#application_controller {
+	background:url("AR_ES_MEX_LATAM_3.jpg") center top no-repeat;
+  	background-size:cover;
 }
 .navbar {
 	background-color:white;
@@ -76,6 +80,8 @@ html {
 		margin-left:15px;
 		vertical-align:top;
 		width:302px;
+
+
 		div {
 			background-color:white;
 			border-radius:4px;
@@ -187,8 +193,4 @@ html {
 	position: absolute;
 	left: 0;
 	top: 50px;
-}
-
-.blanco {
-	color: white;
 }

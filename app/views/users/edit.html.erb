@@ -1,0 +1,8 @@
+<%= form_tag("/users/#{@user.id}", method: "put") do %>
+<!-- Otra manera para llamar a la variable es: "/users/" + @user.id.to_s o "/user/#{session[:user]}"--> 
+<%= text_field_tag(:name, @user.name, placeholder: "Nombre Completo") %>
+<%= text_field_tag(:username, @username, placeholder: "Nombre de Usuario") %>
+<%= text_field_tag(:email, @user.email, placeholder: "Correo Electronico") %>
+<%= text_field_tag(:password, "", placeholder:"Contrasena") %>
+<%= submit_tag("Guardar Cambios") %>
+<% end %>

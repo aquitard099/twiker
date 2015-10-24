@@ -6,12 +6,6 @@
 
 <div class="container">
   
-  <div class="notice">
-    <% if flash[:notice] %>
-      <%= flash[:notice] %>
-    <% end %>
-  </div>  
-
 	<section class="introduction">
 		<div>
 			<h1>Bienvenido a Twiker.</h1>
@@ -21,6 +15,11 @@
 
 	--><section class="forms">
 		<div>
+         <div class="flash_login">		
+		  <% if flash[:login] %>
+             <%= flash[:login] %>
+		  <% end %>
+		 </div>
 			<%= form_tag("/login", method:"post") do %>
 				<%= text_field_tag(:email, "", placeholder: "Correo electrónico") %>
 				<%= password_field_tag(:password, "", class: "medium", placeholder: "Contraseña") %><!--
@@ -36,6 +35,14 @@
 
 		<div>
 			<h2>¿Eres un nuevo maker? <span>Regístrate</span></h2>
+
+			<% if @user && @user.errors.count > 0 %>
+               <ul>
+                 <% @user.errors.full_messages.each do |message| %>
+               	   <li><%= message %></li>
+                 <% end %>
+               </ul>
+			<% end %>
 			<%= form_tag("/users", method: "post", class: "signup") do %>
 				<input type="text" placeholder="Nombre completo" name="name">
 				<input type="text" placeholder="Correo electrónico" name="email">

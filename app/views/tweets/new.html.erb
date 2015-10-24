@@ -1,0 +1,4 @@
+<%= form_tag("/tweets", method: "post") do %>
+   <%= text_area_tag(:content, "", placeholder: "Escribe aca tu tweet...") %>
+   <%= submit_tag("Tweet") %>
+<% end %>

@@ -1,11 +1,102 @@
-<div class="blanco">
-<%= @user.name %>
-<%= @user.email %>
-<%= @user.password%>
-<%= @user.gender%>
-<%= @user.verified %>
-</div>
+<% content_for :stylesheets do %>
+  <link rel="stylesheet" href="/assets/users.css">
+<% end %>
 
-<!-- Ambos sirver para generar un link para cerrar seccion, el segundo ayuda dese ruby -->
-<a class="blanco"href="/logout">Cerrar sesion</a> 
-<%= link_to "Cerrar sesion", "/logout", class: "blanco"%>
+<div class="wrapper show">
+	<section class="user">
+		<article class="user_info">
+			<img src="http://lorempixel.com/output/business-q-c-640-480-1.jpg">
+			<h2><%= @user.name %></h2>	
+			<p>Cupcake ipsum dolor sit amet dessert. Jelly-o sweet roll caramels sesame snaps dessert pudding donut candy canes. Croissant sesame snaps bear claw gummies.</p>
+			<a href="http://noti-cias.herokuapp.com"><i class="fa fa-link"></i>  www.noti-cias.com</a>
+			<a href="#" class="button">Follow</a>
+		</article>
+
+		<article class="user_gallery">
+			<img src="http://lorempixel.com/output/sports-q-g-640-480-3.jpg"><!--		
+			--><img src="http://lorempixel.com/output/nature-q-c-640-480-5.jpg"><!--
+			--><img src="http://lorempixel.com/output/fashion-q-g-640-480-6.jpg"> <!--
+			--><img src="http://lorempixel.com/output/technics-q-c-640-480-6.jpg"><!--
+			--><img src="http://lorempixel.com/output/animals-q-c-640-480-3.jpg"><!--
+			--><img src="http://lorempixel.com/400/200/"><!--
+			--><img src="http://lorempixel.com/output/transport-q-c-640-480-3.jpg"><!--
+			--><img src="http://lorempixel.com/output/food-q-c-640-480-4.jpg"><!--
+			--><img src="http://lorempixel.com/output/city-q-g-640-480-5.jpg">
+		</article>
+	</section>
+
+	<section class="tweets">
+		<article class="tweets_info">
+			<ul>
+				<li><a href="#">Tweets<span class="count"><%= @tweets.count %></span></a></li><!--
+				--><li><a href="#">Photos/Videos<span class="count"><%= @tweets.count %></span></a></li><!--
+				--><li><a href="#">Following<span class="count"><%= @tweets.count %></span></a></li><!--
+				--><li><a href="#">Followers<span class="count"><%= @tweets.count %></span></a></li>
+			</ul>
+		</article>
+
+		<article class="user_tweets">
+		  <% @tweets.order('created_at DESC').each do |tweet| %>
+			<div class="tweet">
+				<div class="image">
+					<img src="http://lorempixel.com/output/business-q-c-640-480-2.jpg">
+				</div><!--
+				--><div class="content">
+               <div>
+               	<h3><%= tweet.user.name %> <span>@<%= tweet.user.username %></span></h3>
+               	<span class="time"><%= distance_of_time_in_words(tweet.created_at, Time.now) %></span>
+               </div>
+               <div class="text">
+               	<p><%= tweet.content %></p>
+               </div>
+               <div class="actions">
+               	<i class="fa fa-share"></i>
+               	<i class="fa fa-star"></i>
+               	<i class="fa fa-refresh"></i>
+               	<%= link_to "<i class='fa fa-trash'></i>".html_safe, tweet_path(tweet), method: :delete, data: {confirm: "Are you sure?"}, :class => "trash" %>
+               	<i class="fa fa-expand expand"></i>
+               </div>
+			   </div>
+			</div>
+		  <% end %>
+		</article>
+	</section>
+      
+	<section class="trends">
+		<article class="user_trends">
+			<h4>Trends</h4>
+			<ul>
+				<li>#Métodos</li>
+				<li>#Clases</li>
+				<li>#HTMLyCSS</li>
+				<li>#BasesDelLenguaje</li>
+				<li>#ResponsiveDesign</li>
+				<li>#RubyKoans</li>
+				<li>#ActiveRecord</li>
+				<li>#TheIconicFont</li>
+				<li>#PrettySweet</li>
+				<li>#Ruby</li>
+			</ul>
+		</article>
+      <article class="to_follow">
+        <h2>Who to Follow</h2>
+      	<div class="user_reference">
+      		<div class="image">
+      			<img src="http://lorempixel.com/output/people-q-c-640-480-3.jpg">
+      		</div>
+      		<div class="info_reference">
+      			<h3>Don Pepe</h3>
+      			<span class="fa-stack fa-lg">
+                 	<i class="fa fa-square-o fa-stack-2x"></i>
+                 	<a href="#"><i class="fa fa-plus fa-stack-1x"></i></a>
+                </span> 		
+                <p>Bogota, Colombia</p>	
+      		</div>
+      	</div>
+      </article>
+	</section>
+</div>
+<%= link_to "Editar perfil", "/users/#{@user.id}/edit"%>
+<!-- Ambos sirver para generar un link para cerrar seccion, el segundo lo hace desde ruby. -->
+<a href="/logout">Cerrar sesion</a> 
+<%= link_to "Cerrar sesion", "/logout"%>
